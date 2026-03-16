@@ -1,0 +1,33 @@
+class Solution(object):
+    def getBiggestThree(self, grid):
+        m, n = len(grid), len(grid[0])
+        res = set()
+
+        for r in range(m):
+            for c in range(n):
+                res.add(grid[r][c])
+
+                k = 1
+                while True:
+                    if r + 2*k >= m or c - k < 0 or c + k >= n:
+                        break
+
+                    total = 0
+                    x, y = r, c
+
+                    for i in range(k):
+                        total += grid[x+i][y-i]
+
+                    for i in range(k):
+                        total += grid[x+k+i][y-k+i]
+
+                    for i in range(k):
+                        total += grid[x+2*k-i][y+i]
+
+                    for i in range(k):
+                        total += grid[x+k-i][y+k-i]
+
+                    res.add(total)
+                    k += 1
+
+        return sorted(res, reverse=True)[:3]
