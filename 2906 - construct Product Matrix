@@ -8,6 +8,7 @@ class Solution(object):
         for row in grid:
             arr.extend(row)
 
+
         size = len(arr)
 
         prefix = [1] * size
